@@ -1,0 +1,8 @@
+Model NJModelLamp
+{ 
+   SKIN 0 "NJLamp"
+   MODEL 0 "Models/NJLamp.md3"
+   Scale 1.0 1.0 1.0
+   
+   FrameIndex NJAY A 0 0
+}

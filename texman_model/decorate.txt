@@ -1,0 +1,18 @@
+ACTOR NJModelLamp : SwitchableDecoration 21100
+{
+	Radius 16
+	Height 48
+	ProjectilePassHeight -16
+	+SOLID
+	States
+	{
+	Spawn:
+	//fallthrough
+	Active:
+		NJAY A -1
+		Stop
+	Inactive:
+		NJAY B -1
+		Stop
+	}
+}
