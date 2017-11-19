@@ -1,0 +1,4 @@
+texture NJLampTexture, 64, 64
+{
+   graphic NJLamp, 0, 0
+}
