@@ -1,0 +1,7 @@
+#library "inftime"
+#include "zcommon.acs"
+
+script "Translate" ENTER
+{
+	CreateTranslation (2, 112:1270=950:95);
+}
