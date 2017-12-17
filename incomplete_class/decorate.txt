@@ -1,0 +1,28 @@
+// Test case from Heretic: War of the Sidhe
+// https://forum.zdoom.org/viewtopic.php?t=46670
+
+actor ic : EggFX
+{
+	-NOGRAVITY
+	+BOUNCEONWALLS
+	+BOUNCEONFLOORS
+	+BOUNCEONCEILINGS
+	BounceType "Doom"
+	Translation "0:35=145:168"
+	MorphProjectile.PlayerClass "ChickenPlayer"
+	MorphProjectile.MonsterClass "RedChicken"
+	MorphProjectile.Duration -10000
+	MorphProjectile.MorphFlash "DummyMorphFlash"
+	MorphProjectile.UnMorphFlash "DummyMorphFlash"
+	States
+	{
+	Spawn:
+		EGGM ABCDE 4
+		Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("NoGravity",1)
+		TNT1 A 0 A_SetScale(2.0)
+		FX04 BCDEF 3 Bright
+		Stop
+	}
+}
