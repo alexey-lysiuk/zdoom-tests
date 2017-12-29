@@ -1,0 +1,9 @@
+ANIMATEDDOOR TEST
+	pic DOOR9_2
+	pic DOOR2_4
+	pic DOOR9_1
+	pic DOOR9_2
+	pic DOOR9_2
+	pic DOOR2_4
+	pic DOOR9_1
+	pic DOOR9_2
