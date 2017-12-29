@@ -1,0 +1,4 @@
+addkeysection "Mod Section" ModSection
+addmenukey "Mod Bind" test_mod_bind
+alias test_mod_bind "save_dir 123; save_dir; echo \"safe command\"; logfile 123; test_mod_cvar 0; wait; test_mod_cvar"
+defaultbind K test_mod_bind
