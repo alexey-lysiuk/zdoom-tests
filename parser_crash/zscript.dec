@@ -1,0 +1,42 @@
+version "3.2"
+
+class mutation_giver : EventHandler
+{
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		if(e.thing.bIsMonster == true) {e.Thing.GiveInventory("fade_out_mutation", 1); console.printf("monster spawn");}
+	}
+}
+
+class fade_out_mutation : inventory{ default {inventory.amount 1;}
+
+   double max_health;
+   double current_health;
+   double result_value;
+   double limit;
+
+override void AttachToOwner(Actor user)
+   {
+	  max_health = user.health;
+      current_health = user.health;
+      super.AttachToOwner(user);
+   }
+override void doeffect()
+   {
+      if(owner.health == 0){return;}
+
+      current_health = owner.health;
+      result_value = current_health/max_health;
+
+      if(result_value == limit) (owner.a_fadeto(result_value, 0.05, FTF_CLAMP); return;)
+
+      CVar fading_amount = CVar.FindCVar('fade_out_cvar');
+      limit = fading_amount.GetFloat();
+
+      if( result_value <= 0.1)
+      {result_value = 0.1;}
+
+
+      owner.a_fadeto(result_value, 0.05, FTF_CLAMP);
+   }
+}
