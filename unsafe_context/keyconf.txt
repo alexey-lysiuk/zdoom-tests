@@ -1,4 +1,8 @@
 addkeysection "Mod Section" ModSection
 addmenukey "Mod Bind" test_mod_bind
+
 alias test_mod_bind "save_dir 123; save_dir; echo \"safe command\"; logfile 123; test_mod_cvar 0; wait; test_mod_cvar"
 defaultbind K test_mod_bind
+
+alias my_newbind "wait; set name suxx; test 1 \"wait; logfile 123; toggle cl_capfps\""
+defaultbind L my_newbind

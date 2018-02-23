@@ -1,0 +1,17 @@
+AddOptionMenu "OptionsMenu"
+{
+    StaticText " "
+    Submenu "My Test Options", "MyTestOptions"
+}
+
+OptionMenu "MyTestOptions"
+{
+    Title "My Test Options"
+    Command "echo", "echo hi!"
+    Command "logfile", "logfile 123"
+    StaticText " "
+    Command "set cl_capfps", "set cl_capfps 1"
+    Command "toggle cl_capfps", "toggle cl_capfps"
+    StaticText " "
+    Command "set test_mod_cvar", "set test_mod_cvar 123"
+}
