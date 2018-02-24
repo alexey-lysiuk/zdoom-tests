@@ -1,0 +1,19 @@
+class KillFist : Fist
+{
+	States
+	{
+	Fire:
+		PUNG B 4;
+		PUNG C 4 Kill;
+		PUNG D 5;
+		Goto Ready;
+	}
+	
+	action void Kill()
+	{
+		let mo = Spawn("DoomImp");
+		mo.SetXYZ(pos);
+		int i = mo.ACS_ScriptCall("KillMe");
+		console.printf("--> %i", i);
+	}
+}
