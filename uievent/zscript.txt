@@ -1,0 +1,83 @@
+version "2.4"
+
+class UIEventTestHandler : EventHandler
+{
+    override bool InputProcess(InputEvent e)
+    {
+        if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_F1)
+        {
+            SendNetworkEvent("EnterUiProcess");
+            return true;
+        }
+
+        return false;
+    }
+
+    override bool UiProcess(UiEvent e)
+    {
+        string message;
+
+        switch (e.Type)
+        {
+        case UiEvent.Type_LButtonDown   : message = "Type_LButtonDown"   ; break;
+        case UiEvent.Type_LButtonUp     : message = "Type_LButtonUp"     ; break;
+        case UiEvent.Type_MButtonDown   : message = "Type_MButtonDown"   ; break;
+        case UiEvent.Type_MButtonUp     : message = "Type_MButtonUp"     ; break;
+        case UiEvent.Type_RButtonDown   : message = "Type_RButtonDown"   ; break;
+        case UiEvent.Type_RButtonUp     : message = "Type_RButtonUp"     ; break;
+        case UiEvent.Type_WheelUp       : message = "Type_WheelUp"       ; break;
+        case UiEvent.Type_WheelDown     : message = "Type_WheelDown"     ; break;
+        case UiEvent.Type_WheelRight    : message = "Type_WheelRight"    ; break;
+        case UiEvent.Type_WheelLeft     : message = "Type_WheelLeft"     ; break;
+        case UiEvent.Type_BackButtonDown: message = "Type_BackButtonDown"; break;
+        case UiEvent.Type_BackButtonUp  : message = "Type_BackButtonUp"  ; break;
+        case UiEvent.Type_FwdButtonDown : message = "Type_FwdButtonDown" ; break;
+        case UiEvent.Type_FwdButtonUp   : message = "Type_FwdButtonUp"   ; break;
+        case UiEvent.Type_KeyDown:
+            message = "Type_KeyDown, KeyChar = "..e.KeyChar;
+            if (e.KeyChar == UiEvent.Key_F1)
+            {
+                SendNetworkEvent("ExitUiProcess");
+            }
+            break;
+        case UiEvent.Type_KeyUp:
+            message = "Type_KeyUp, KeyChar = "..e.KeyChar;
+            break;
+        case UiEvent.Type_KeyRepeat:
+            message = "Type_KeyRepeat, KeyChar = "..e.KeyChar;
+            break;
+        case UiEvent.Type_Char:
+            message = "Type_Char, KeyChar = "..e.KeyChar;
+            break;
+        }
+
+        if (message.length() > 0)
+        {
+            console.printf(message);
+        }
+
+        return false;
+    }
+
+    override void NetworkProcess(ConsoleEvent e)
+    {
+        if (e.Name == "ExitUiProcess")
+        {
+            IsUiProcessor = false;
+        }
+        else if (e.Name == "EnterUiProcess")
+        {
+            IsUiProcessor = true;
+        }
+    }
+
+    override void RenderOverlay(RenderEvent e)
+    {
+        int textColor = IsUiProcessor ? Font.CR_GREEN : Font.CR_RED;
+        string message = IsUiProcessor 
+            ? "UI input mode - press F1 to enter normal mode"
+            : "Normal input mode - press F1 to enter UI mode";
+
+        Screen.drawText(ConFont, textColor, 50, 50, message);
+    }
+}
