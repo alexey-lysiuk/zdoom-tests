@@ -1,0 +1,14 @@
+version "2.4"
+
+class LineActivationTestHandler : StaticEventHandler
+{
+	override void WorldLinePreActivated(WorldEvent e)
+	{
+		Console.Printf("WorldLinePreActivated: Type = %i", e.ActivationType);
+	}
+	
+    override void WorldLineActivated(WorldEvent e)
+    {
+		Console.Printf("WorldLineActivated: Type = %i", e.ActivationType);
+    }
+}
