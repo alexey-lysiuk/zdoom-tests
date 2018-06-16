@@ -1,0 +1,27 @@
+version "2.4"
+
+class CameraTextureStatusBar : DoomStatusBar
+{
+	bool firstTexDone;
+
+	override void Init()
+	{
+		firstTexDone = false;
+	}
+
+	override void Draw(int state, double TicFrac)
+	{	
+		super.Draw(state, TicFrac);
+		
+		if (!firstTexDone)
+		{
+			TexMan.SetCameraToTexture(CPlayer.mo, "CAMTEX_1", 60);
+			firstTexDone = true;
+		}
+		
+		TexMan.SetCameraToTexture(CPlayer.mo, "CAMTEX_2", 120);
+		
+		DrawImage("CAMTEX_1", (0, 0), DI_SCREEN_CENTER | DI_SCREEN_LEFT);
+		DrawImage("CAMTEX_2", (0, 0), DI_SCREEN_VCENTER | DI_SCREEN_RIGHT);
+	}
+}

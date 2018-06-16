@@ -1,0 +1,2 @@
+cameratexture CAMTEX_1 128 128
+cameratexture CAMTEX_2 256 256
