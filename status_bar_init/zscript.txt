@@ -1,0 +1,25 @@
+version "2.4"
+
+class BuggyStatusBar : DoomStatusBar
+{
+	override void Init()
+	{
+		// No super.Init() !
+
+		// 1.
+		// SetSize(0, 0, 0);
+
+		// 2.
+		// BaseStatusBar.Init();
+
+		// 3.
+		// Font fnt = "HUDFONT_DOOM";
+		// mHUDFont = HUDFont.Create(fnt, fnt.GetCharWidth("0"), true, 1, 1);
+		// fnt = "INDEXFONT_DOOM";
+		// mIndexFont = HUDFont.Create(fnt, fnt.GetCharWidth("0"), true);
+		// mAmountFont = HUDFont.Create("INDEXFONT");
+
+		// 4.
+		// diparms = InventoryBarState.Create();
+	}
+}
