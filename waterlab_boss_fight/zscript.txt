@@ -1,0 +1,30 @@
+version "2.4"
+
+class WaterlabBossFight : EventHandler
+{
+	override void PlayerEntered(PlayerEvent event)
+	{
+		if (level.GetChecksum() ~== "c5bc307499a1b511c6c536df7994cd26")
+		{
+			Actor player = players[event.PlayerNumber].mo;
+		
+			static const name items[] =
+			{
+				'Backpack',
+				'SuperShotgun',
+				'Chaingun',
+				'RocketLauncher',
+				'PlasmaRifle',
+				'BFG9000'
+			};
+			
+			for (int i = 0; i < 6; ++i)
+			{
+				player.GiveInventory(items[i], 1);
+			}
+			
+			Vector3 pos = (220, 1770, 0);
+			player.Teleport(pos, 90, TELF_DESTFOG);
+		}
+	}
+}
