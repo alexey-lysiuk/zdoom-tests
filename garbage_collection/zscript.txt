@@ -1,0 +1,31 @@
+version "2.4"
+
+// Test for garbage collection of still referenced objects
+// Enter any level and do 'gc full' in console to reproduce the problem
+
+class TestClass
+{
+    int v;
+}
+
+struct TestStruct
+{
+    Array<TestClass> a;
+}
+
+class GarbageCollectionTestHandler : StaticEventHandler
+{
+    TestStruct s[2];
+
+    override void PlayerEntered(PlayerEvent evt)
+    {
+        let c = new("TestClass");
+        c.v = 42;
+        s[1].a.Push(c);
+    }
+
+    override void WorldTick()
+    {
+        console.printf("%i", s[1].a[0].v);
+    }
+}
