@@ -1,0 +1,8 @@
+class Crash : Actor
+{
+    override void BeginPlay()
+    {
+        Actor a;
+        a.Used(self);
+    }
+}
