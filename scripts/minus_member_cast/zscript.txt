@@ -1,0 +1,21 @@
+class MinusMemberCast : Actor
+{
+	float value;
+
+	double func()
+	{
+		return -value;
+	}
+
+// optional -- start
+	states
+	{
+	spawn:
+		TNT1 A 1
+		{
+			value = 10.;
+			console.printf("%f", func());
+		}
+	}
+// optional -- end
+}
