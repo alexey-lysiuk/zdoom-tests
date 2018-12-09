@@ -1,0 +1,26 @@
+class Test : Actor
+{
+	int, int Func1()
+	{
+		return 42, 31337;
+	}
+
+	int, int Func2()
+	{
+		// int a, b;
+		// [a, b] = Func1();
+		// return a, b;
+
+		return Func1();
+	}
+
+	override void BeginPlay()
+	{
+		int a, b;
+		[a, b] = Func2();
+
+		string ca = 42 == a ? Font.TEXTCOLOR_GREEN : Font.TEXTCOLOR_RED;
+		string cb = 31337 == b ? Font.TEXTCOLOR_GREEN : Font.TEXTCOLOR_RED;
+		console.printf("%s42 == %i\n%s31337 == %i", ca, a, cb, b);
+	}
+}
