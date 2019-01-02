@@ -1,0 +1,52 @@
+class MyCompatTest : LevelCompatibility
+{
+	protected void Apply(Name checksum)
+	{
+		switch (checksum)
+		{
+		case '3C9902E376CCA1E9C3BE8763BDC21DF5':  // doom2.wad MAP01
+		
+			// void ClearSectorTags(int sector);
+			ClearSectorTags(1000000);
+			ClearSectorTags(-1);
+		
+			// void AddSectorTag(int sector, int tag);
+			AddSectorTag(1000000, 1);
+			AddSectorTag(-1, 1);
+
+			// void OffsetSectorPlane(int sector, int plane, double offset);
+			OffsetSectorPlane(1000000, 0, 8);
+			OffsetSectorPlane(-1, 1, -8);
+			OffsetSectorPlane(1, 1000000, 128);
+			OffsetSectorPlane(1, -1, -128);
+			
+			// void SetThingSkills(int thing, int skills);
+			SetThingSkills(1000000, 31);
+			SetThingSkills(-1, 31);
+			
+			// void SetThingXY(int thing, double x, double y);
+			SetThingXY(1000000, 0, 0);
+			SetThingXY(-1, 128, 256);
+			
+			// void SetThingZ(int thing, double z);
+			SetThingZ(1000000, 8);
+			SetThingZ(-1, -8);
+			
+			// void SetThingFlags(int thing, int flags);
+			SetThingFlags(1000000, 0);
+			SetThingFlags(-1, 0);
+			
+			// void SetVertex(uint vertex, double x, double y);
+			SetThingXY(1000000, 0, 0);
+			SetThingXY(-1, 128, 256);
+			
+			// void SetLineSectorRef(uint line, uint side, uint sector);
+			OffsetSectorPlane(10000000, 0, 16);
+			OffsetSectorPlane(-1, 1, 16);
+			OffsetSectorPlane(1, 1000000, 16);
+			OffsetSectorPlane(1, -1, 16);
+			
+			break;
+		}
+	}
+}
