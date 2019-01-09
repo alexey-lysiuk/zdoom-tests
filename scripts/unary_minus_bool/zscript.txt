@@ -1,0 +1,17 @@
+class UnaryMinusBool : Actor
+{
+	states
+	{
+	spawn:
+		TNT1 A 1
+		{
+			bool a = false;
+			int i = -a;
+			
+			bool b = true;
+			int j = -b;
+			
+			console.printf("%i %i", i, j);
+		}
+	}
+}
