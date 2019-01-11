@@ -1,0 +1,15 @@
+class RawStringLiteral : Actor
+{
+	override void BeginPlay()
+	{
+		console.printf("This is
+a multi-line raw string
+literal
+
+");
+	}
+}
+
+class Warning : Actor replaces UndefinedClass
+{
+}
