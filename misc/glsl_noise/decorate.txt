@@ -1,0 +1,9 @@
+Actor Grass1B
+{
+	States
+	{
+	Spawn:
+		GRS1 B 1
+		loop
+	}
+}

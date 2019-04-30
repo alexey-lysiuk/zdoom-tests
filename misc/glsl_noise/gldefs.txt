@@ -1,0 +1,4 @@
+HardwareShader Sprite GRS1B0
+{
+	Shader "Shaders/grass.shader"
+}
