@@ -1,4 +1,4 @@
-Actor Grass1B
+Actor Grass1B 31337
 {
 	States
 	{
