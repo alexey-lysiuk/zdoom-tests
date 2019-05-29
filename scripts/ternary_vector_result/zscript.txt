@@ -1,0 +1,28 @@
+version "2.4"
+
+class TernaryVectorResultTest : Actor
+{
+    private vector2 TestVector2(bool check)
+    {
+        vector2 first = (1.0, 2.0);
+        vector2 second = (3.0, 4.0);
+        return check ? first : second;
+    }
+
+    private vector3 TestVector3(bool check)
+    {
+        vector3 first = (1.0, 2.0, 3.0);
+        vector3 second = (4.0, 5.0, 6.0);
+        return check ? first : second;
+    }
+
+    override void BeginPlay()
+    {
+        console.printf("%.2f, %.2f", TestVector2(true));
+        console.printf("%.2f, %.2f", TestVector2(false));
+        console.printf("%.2f, %.2f, %.2f", TestVector3(true));
+        console.printf("%.2f, %.2f, %.2f", TestVector3(false));
+
+        super.BeginPlay();
+    }
+}
