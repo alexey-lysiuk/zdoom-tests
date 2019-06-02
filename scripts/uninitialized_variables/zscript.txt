@@ -1,0 +1,147 @@
+class UninitializedVariables : Actor
+{
+	private void OutInt(out int i) {}
+	private void OutDouble(out double d) {}
+	private void OutObject(out object o) {}
+	private void OutString(out string s) {}
+	private void OutVector2(out vector2 v) {}
+	private void OutVector3(out vector3 v) {}
+
+	private void TestRegisterVariables()
+	{
+		{
+			int i = 1337;
+			double d = 31337;
+			object o = self;
+			string s = "test";
+			vector2 v2 = (123, 456);
+			vector3 v3 = (987, 654, 321);
+		}
+		
+		int ui;
+		double ud;
+		object uo;
+		string us;
+		vector2 uv2;
+		vector3 uv3;
+		
+		// console.printf("ui = %i, ud = %d, uo = %p, us = \"%s\", uv2 = (%.1f, %.1f), uv3 = (%.1f, %.1f, %.1f)", ui, ud, uo, us, uv2, uv3);
+		
+		if (ui != 0) ThrowAbortException("ui != 0");
+		if (ud != 0) ThrowAbortException("ud != 0");
+		if (uo != null) ThrowAbortException("uo != 0");
+		if (us != "") ThrowAbortException("us != 0");
+		if (uv2.x != 0) ThrowAbortException("uv2.x != 0");
+		if (uv2.y != 0) ThrowAbortException("uv2.y != 0");
+		if (uv3.x != 0) ThrowAbortException("uv2.x != 0");
+		if (uv3.y != 0) ThrowAbortException("uv3.y != 0");
+		if (uv3.z != 0) ThrowAbortException("uv3.z != 0");
+	}
+	
+	private void TestOutRegisterVariables()
+	{
+		{
+			int i = 1337;
+			double d = 31337;
+			object o = self;
+			string s = "test";
+			// vector2 v2 = (123, 456);
+			// vector3 v3 = (987, 654, 321);
+		}
+		
+		int ui;
+		OutInt(ui);
+		
+		double ud;
+		OutDouble(ud);
+		
+		object uo;
+		OutObject(uo);
+		
+		string us;
+		OutString(us);
+		
+		// vector2 uv2;
+		// OutVector2(uv2);
+
+		// vector3 uv3;
+		// OutVector3(uv3);
+		
+		if (ui != 0) ThrowAbortException("ui != 0");
+		if (ud != 0) ThrowAbortException("ud != 0");
+		if (uo != null) ThrowAbortException("uo != 0");
+		if (us != "") ThrowAbortException("us != 0");
+		// if (uv2.x != 0) ThrowAbortException("uv2.x != 0");
+		// if (uv2.y != 0) ThrowAbortException("uv2.y != 0");
+		// if (uv3.x != 0) ThrowAbortException("uv2.x != 0");
+		// if (uv3.y != 0) ThrowAbortException("uv3.y != 0");
+		// if (uv3.z != 0) ThrowAbortException("uv3.z != 0");
+	}
+	
+	private void TestPartiallyInitializedVectors()
+	{
+		{
+			vector2 v2 = (123, 456);
+			vector3 v3 = (987, 654, 321);
+		}
+
+		vector2 uv2;
+		uv2.x = 1;
+
+		vector3 uv3;
+		uv3.y = 2;
+		
+		if (uv2.x != 1) ThrowAbortException("uv2.x != 1");
+		if (uv2.y != 0) ThrowAbortException("uv2.y != 0");
+		if (uv3.x != 0) ThrowAbortException("uv2.x != 0");
+		if (uv3.y != 2) ThrowAbortException("uv3.y != 2");
+		if (uv3.z != 0) ThrowAbortException("uv3.z != 0");
+	}
+
+	struct TestStruct
+	{
+		int i;
+		double d;
+		object o;
+		string s;
+		vector2 v2;
+		vector3 v3;
+	}
+	
+	private void TestStructs()
+	{
+		{
+			TestStruct s;
+			s.i = 1337;
+			s.d = 1337;
+			s.o = self;
+			s.s = "test";
+			s.v2 = (1337, 1337);
+			s.v3 = (1337, 1337, 1337);
+		}
+		
+		TestStruct us;
+		
+		//console.printf("us.i = %i, us.d = %d, us.o = %p, us.s = \"%s\", us.v2 = (%.1f, %.1f), us.v3 = (%.1f, %.1f, %.1f)", us.i, us.d, us.o, us.s, us.v2, us.v3);
+		
+		if (us.i != 0) ThrowAbortException("us.i != 0");
+		if (us.d != 0) ThrowAbortException("us.d != 0");
+		if (us.o != null) ThrowAbortException("us.o != 0");
+		if (us.s != "") ThrowAbortException("us.s != 0");
+		if (us.v2.x != 0) ThrowAbortException("us.v2.x != 0");
+		if (us.v2.y != 0) ThrowAbortException("us.v2.y != 0");
+		if (us.v3.x != 0) ThrowAbortException("us.v2.x != 0");
+		if (us.v3.y != 0) ThrowAbortException("us.v3.y != 0");
+		if (us.v3.z != 0) ThrowAbortException("us.v3.z != 0");
+	}
+	
+	override void BeginPlay()
+	{
+		TestRegisterVariables();
+		TestOutRegisterVariables();
+		TestPartiallyInitializedVectors();
+		TestStructs();
+		
+		super.BeginPlay();
+	}
+}
