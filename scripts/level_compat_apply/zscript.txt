@@ -1,0 +1,27 @@
+class LevelCompatNoApply : LevelCompatibility
+{
+}
+
+class MyLevelCompatTooMany : LevelCompatibility
+{
+    protected void Apply(Name checksum, String mapname, String extra)
+    {
+        console.printf("MyLevelCompatTooMany: %s %s %s", checksum, mapname, extra);
+    }
+}
+
+class MyLevelCompatTooFew : LevelCompatibility
+{
+    protected void Apply(Name checksum)
+    {
+        console.printf("MyLevelCompatTooFew: %s", checksum);
+    }
+}
+
+class MyLevelCompatWrongTypes : LevelCompatibility
+{
+    protected void Apply(Object checksum, int mapname)
+    {
+        console.printf("MyLevelCompatWrongTypes: %p %i", checksum, mapname);
+    }
+}
