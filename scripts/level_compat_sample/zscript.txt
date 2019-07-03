@@ -1,0 +1,14 @@
+class LevelCompatSample : LevelCompatibility
+{
+    protected void Apply(Name checksum, String mapname)
+    {
+        if ('3C9902E376CCA1E9C3BE8763BDC21DF5' == checksum)
+        {
+            console.printf("This is Doom II MAP01");
+        }
+        else
+        {
+            console.printf("This is a map named %s", mapname);
+        }
+    }
+}
