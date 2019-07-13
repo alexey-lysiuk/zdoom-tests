@@ -1,0 +1,27 @@
+//
+// Host command line   :  -iwad doom2 -file local_player_music +map map01 +sv_cheats 1 -host 2
+// Client command line :  -iwad doom2 -file local_player_music +map map01 +sv_cheats 1 -join localhost
+//
+// Do 'summon ChangeMusic' and pickup
+//
+
+class ChangeMusic : Inventory
+{
+	States
+	{
+	Spawn:
+		BON1 ABCDCB 6;
+		Loop;
+	}
+
+	override bool TryPickup(in out Actor other)
+	{
+		if (other == players[consoleplayer].mo)
+		{
+			S_ChangeMusic("D_EVIL");
+		}
+
+		GoAwayAndDie();
+		return true;
+	}
+}
