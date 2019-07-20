@@ -1,0 +1,27 @@
+class ThrowExceptionTest : Pistol
+{
+	action void DoThrowImpl(bool needThrow)
+	{
+		if (needThrow)
+		{
+			ThrowAbortException("!TEST!");
+		}
+		
+		console.printf("DoThrowImpl");
+	}
+
+	action void DoThrow(bool needThrow)
+	{
+		DoThrowImpl(needThrow);
+		
+		console.printf("DoThrow");
+	}
+
+	States
+	{
+	Fire:
+		PISG A 1 { ThrowAbortException("!TEST!"); }
+	AltFire:
+		PISG A 1 { DoThrow(true); }
+	}
+}
