@@ -1,0 +1,237 @@
+class DynArrayAppendTest : Actor
+{	
+	void TestInt8()
+	{
+		Array<int8> a1;
+		a1.Push(127);
+		a1.Push(0);
+		a1.Push(-128);
+		a1.Push(42);
+
+		Array<int8> a2;
+
+		for (int i = -128; i < 128; ++i)
+		{
+			a2.Push(i);
+		}
+
+		a1.Append(a2);
+
+		if (a1.Size() != 260) ThrowAbortException("a1.Size() != 5");
+		if (a1[0] != 127) ThrowAbortException("a1[0] != 1");
+		if (a1[1] != 0) ThrowAbortException("a1[1] != 0");
+		if (a1[2] != -128) ThrowAbortException("a1[2] != -128");
+		if (a1[3] != 42) ThrowAbortException("a1[3] != 42");
+
+		for (int i = -128; i < 128; ++i)
+		{
+			if (a1[i + 132] != i) ThrowAbortException("a1[i + 132] != i");
+		}
+
+		if (a2.Size() != 256) ThrowAbortException("a2.Size() != 256");
+		
+		for (int i = -128; i < 128; ++i)
+		{
+			if (a2[i + 128] != i) ThrowAbortException("a2[i + 128] != i");
+		}
+	}
+	
+	void TestInt16()
+	{
+		Array<int16> a1;
+		a1.Push(-6666);
+		a1.Push(-555);
+		a1.Push(-44);
+		a1.Push(11);
+		a1.Push(222);
+		a1.Push(3333);
+
+		Array<int16> a2;
+		a2.Push(77);
+		a2.Push(888);
+		a2.Push(-9999);
+		a2.Push(0);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 10) ThrowAbortException("a1.Size() != 10");
+		if (a1[0] != -6666) ThrowAbortException("a1[0] != -6666");
+		if (a1[1] != -555) ThrowAbortException("a1[1] != -555");
+		if (a1[2] != -44) ThrowAbortException("a1[2] != -44");
+		if (a1[3] != 11) ThrowAbortException("a1[3] != 11");
+		if (a1[4] != 222) ThrowAbortException("a1[4] != 222");
+		if (a1[5] != 3333) ThrowAbortException("a1[5] != 3333");
+		if (a1[6] != 77) ThrowAbortException("a1[6] != 77");
+		if (a1[7] != 888) ThrowAbortException("a1[7] != 888");
+		if (a1[8] != -9999) ThrowAbortException("a1[8] != -9999");
+		if (a1[9] != 0) ThrowAbortException("a1[9] != 0");
+
+		if (a2.Size() != 4) ThrowAbortException("a2.Size() != 4");
+		if (a2[0] != 77) ThrowAbortException("a2[0] != 77");
+		if (a2[1] != 888) ThrowAbortException("a2[1] != 888");
+		if (a2[2] != -9999) ThrowAbortException("a2[2] != -9999");
+		if (a2[3] != 0) ThrowAbortException("a2[3] != 0");
+	}
+	
+	void TestInt32()
+	{
+		Array<int> a1;
+		a1.Push(12345678);
+		a1.Push(42);
+		a1.Push(-987654);
+
+		Array<int> a2;
+		a2.Push(55555555);
+		a2.Push(-222444888);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
+		if (a1[0] != 12345678) ThrowAbortException("a1[0] != 1");
+		if (a1[1] != 42) ThrowAbortException("a1[1] != 42");
+		if (a1[2] != -987654) ThrowAbortException("a1[2] != -987654");
+		if (a1[3] != 55555555) ThrowAbortException("a1[3] != 55555555");
+		if (a1[4] != -222444888) ThrowAbortException("a1[4] != -222444888");
+		
+		if (a2.Size() != 2) ThrowAbortException("a2.Size() != 2");
+		if (a2[0] != 55555555) ThrowAbortException("a2[0] != 55555555");
+		if (a2[1] != -222444888) ThrowAbortException("a2[1] != -222444888");
+	}
+	
+	void TestFloat()
+	{
+		Array<float> a1;
+		a1.Push(0.f);
+		a1.Push(16.f);
+		a1.Push(-256.f);
+
+		Array<float> a2;
+		a2.Push(128.f);
+		a2.Push(-1024.f);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
+		if (a1[0] != 0.f) ThrowAbortException("a1[0] != 0.f");
+		if (a1[1] != 16.f) ThrowAbortException("a1[1] != 16.f");
+		if (a1[2] != -256.f) ThrowAbortException("a1[2] != -256.f");
+		if (a1[3] != 128.f) ThrowAbortException("a1[3] != 128.f");
+		if (a1[4] != -1024.f) ThrowAbortException("a1[4] != -1024.f");
+
+		if (a2.Size() != 2) ThrowAbortException("a2.Size() != 2");
+		if (a2[0] != 128.f) ThrowAbortException("a2[0] != 128.f");
+		if (a2[1] != -1024.f) ThrowAbortException("a2[1] != -1024.f");
+	}
+
+	void TestDouble()
+	{
+		Array<double> a1;
+		a1.Push(0.);
+		a1.Push(16.);
+		a1.Push(-256.);
+
+		Array<double> a2;
+		a2.Push(128.);
+		a2.Push(-1024.);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
+		if (a1[0] != 0.) ThrowAbortException("a1[0] != 0.f");
+		if (a1[1] != 16.) ThrowAbortException("a1[1] != 16.f");
+		if (a1[2] != -256.) ThrowAbortException("a1[2] != -256.f");
+		if (a1[3] != 128.) ThrowAbortException("a1[3] != 128.f");
+		if (a1[4] != -1024.) ThrowAbortException("a1[4] != -1024.f");
+
+		if (a2.Size() != 2) ThrowAbortException("a2.Size() != 2");
+		if (a2[0] != 128.) ThrowAbortException("a2[0] != 128.f");
+		if (a2[1] != -1024.) ThrowAbortException("a2[1] != -1024.f");
+	}
+
+	void TestPointer()
+	{
+		// TODO ...
+	}
+
+	void TestObject()
+	{
+		Actor t1 = Spawn('Actor');
+		Actor t2 = Spawn('Actor');
+		Actor t3 = Spawn('Actor');
+		Actor t4 = Spawn('Actor');
+		
+		Array<Actor> a1;
+		a1.Push(t1);
+		a1.Push(t2);
+
+		Array<Actor> a2;
+		a2.Push(t3);
+		a2.Push(t4);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 4) ThrowAbortException("a1.Size() != 4");
+		if (a1[0] != t1) ThrowAbortException("a1[0] != t1");
+		if (a1[1] != t2) ThrowAbortException("a1[1] != t2");
+		if (a1[2] != t3) ThrowAbortException("a1[2] != t3");
+		if (a1[3] != t4) ThrowAbortException("a1[3] != t4");
+
+		a2.Push(self);
+
+		a1.Append(a2);
+
+		if (a1.Size() != 7) ThrowAbortException("a1.Size() != 7");
+		if (a1[0] != t1) ThrowAbortException("a1[0] != t1");
+		if (a1[1] != t2) ThrowAbortException("a1[1] != t2");
+		if (a1[2] != t3) ThrowAbortException("a1[2] != t3");
+		if (a1[3] != t4) ThrowAbortException("a1[3] != t4");
+		if (a1[4] != t3) ThrowAbortException("a1[4] != t3");
+		if (a1[5] != t4) ThrowAbortException("a1[5] != t4");
+		if (a1[6] != self) ThrowAbortException("a1[6] != self");
+		
+		if (a2.Size() != 3) ThrowAbortException("a1.Size() != 3");
+		if (a2[0] != t3) ThrowAbortException("a1[0] != t3");
+		if (a2[1] != t4) ThrowAbortException("a1[1] != t4");
+		if (a2[2] != self) ThrowAbortException("a1[2] != self");
+	}
+
+	void TestString()
+	{
+		Array<string> a1;
+		a1.Push("123");
+		a1.Push("abcde");
+
+		Array<string> a2;
+		a2.Push("xyz");
+		a2.Push("98765");
+		a2.Push("");
+
+		a1.Append(a2);
+
+		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
+		if (a1[0] != "123") ThrowAbortException("a1[0] != \"123\"");
+		if (a1[1] != "abcde") ThrowAbortException("a1[1] != \"abcde\"");
+		if (a1[2] != "xyz") ThrowAbortException("a1[2] != \"xyz\"");
+		if (a1[3] != "98765") ThrowAbortException("a1[3] != \"98765\"");
+		if (a1[4] != "") ThrowAbortException("a1[4] != \"\"");
+
+		if (a2.Size() != 3) ThrowAbortException("a2.Size() != 2");
+		if (a2[0] != "xyz") ThrowAbortException("a2[0] != \"xyz\"");
+		if (a2[1] != "98765") ThrowAbortException("a2[1] != \"98765\"");
+		if (a2[2] != "") ThrowAbortException("a2[2] != \"\"");
+	}
+
+	override void BeginPlay()
+	{
+		TestInt8();
+		TestInt16();
+		TestInt32();
+		TestFloat();
+		TestDouble();
+		TestPointer();
+		TestObject();
+		TestString();
+		
+		console.printf("All tests passed");
+	}
+}
