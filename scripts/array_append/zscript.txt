@@ -17,6 +17,9 @@ class DynArrayAppendTest : Actor
 
 		a1.Append(a2);
 
+		Array<int8> a3;
+		a1.Append(a3);
+
 		if (a1.Size() != 260) ThrowAbortException("a1.Size() != 5");
 		if (a1[0] != 127) ThrowAbortException("a1[0] != 1");
 		if (a1[1] != 0) ThrowAbortException("a1[1] != 0");
@@ -54,6 +57,9 @@ class DynArrayAppendTest : Actor
 
 		a1.Append(a2);
 
+		Array<int16> a3;
+		a1.Append(a3);
+
 		if (a1.Size() != 10) ThrowAbortException("a1.Size() != 10");
 		if (a1[0] != -6666) ThrowAbortException("a1[0] != -6666");
 		if (a1[1] != -555) ThrowAbortException("a1[1] != -555");
@@ -86,6 +92,9 @@ class DynArrayAppendTest : Actor
 
 		a1.Append(a2);
 
+		Array<int> a3;
+		a1.Append(a3);
+
 		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
 		if (a1[0] != 12345678) ThrowAbortException("a1[0] != 1");
 		if (a1[1] != 42) ThrowAbortException("a1[1] != 42");
@@ -110,6 +119,9 @@ class DynArrayAppendTest : Actor
 		a2.Push(-1024.f);
 
 		a1.Append(a2);
+
+		Array<float> a3;
+		a1.Append(a3);
 
 		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
 		if (a1[0] != 0.f) ThrowAbortException("a1[0] != 0.f");
@@ -136,6 +148,9 @@ class DynArrayAppendTest : Actor
 
 		a1.Append(a2);
 
+		Array<double> a3;
+		a1.Append(a3);
+
 		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
 		if (a1[0] != 0.) ThrowAbortException("a1[0] != 0.f");
 		if (a1[1] != 16.) ThrowAbortException("a1[1] != 16.f");
@@ -150,7 +165,29 @@ class DynArrayAppendTest : Actor
 
 	void TestPointer()
 	{
-		// TODO ...
+		class<Actor> ac = 'Actor';
+		class<Actor> ic = 'Inventory';
+		class<Actor> sc = GetClass();
+
+		Array<class> a1;
+		a1.Push(ac);
+		a1.Push(ic);
+
+		Array<class> a2;
+		a2.Push(sc);
+
+		a1.Append(a2);
+
+		Array<class> a3;
+		a1.Append(a3);
+
+		if (a1.Size() != 3) ThrowAbortException("a1.Size() != 3");
+		if (a1[0] != ac) ThrowAbortException("a1[0] != ac");
+		if (a1[1] != ic) ThrowAbortException("a1[1] != ic");
+		if (a1[2] != sc) ThrowAbortException("a1[2] != sc");
+
+		if (a2.Size() != 1) ThrowAbortException("a2.Size() != 1");
+		if (a2[0] != sc) ThrowAbortException("a2[0] != sc");
 	}
 
 	void TestObject()
@@ -180,6 +217,9 @@ class DynArrayAppendTest : Actor
 
 		a1.Append(a2);
 
+		Array<Actor> a3;
+		a1.Append(a3);
+
 		if (a1.Size() != 7) ThrowAbortException("a1.Size() != 7");
 		if (a1[0] != t1) ThrowAbortException("a1[0] != t1");
 		if (a1[1] != t2) ThrowAbortException("a1[1] != t2");
@@ -207,6 +247,9 @@ class DynArrayAppendTest : Actor
 		a2.Push("");
 
 		a1.Append(a2);
+
+		Array<string> a3;
+		a1.Append(a3);
 
 		if (a1.Size() != 5) ThrowAbortException("a1.Size() != 5");
 		if (a1[0] != "123") ThrowAbortException("a1[0] != \"123\"");
