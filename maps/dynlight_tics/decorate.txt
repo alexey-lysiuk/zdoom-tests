@@ -1,0 +1,29 @@
+actor DynamicLightTics1 : Soulsphere 31337
+{
+	states
+	{
+	Spawn:
+		SOUL ABCDCB 1 Bright
+		loop
+	}
+}
+
+actor DynamicLightTics2 : Soulsphere 31338
+{
+	states
+	{
+	Spawn:
+		SOUL ABCDCB 2 Bright
+		loop
+	}
+}
+
+actor DynamicLightTics6 : Soulsphere 31339
+{
+	states
+	{
+	Spawn:
+		SOUL ABCDCB 6 Bright
+		loop
+	}
+}
