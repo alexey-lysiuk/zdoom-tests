@@ -1,0 +1,14 @@
+version "4.0"
+
+class DeprecatedTest : Weapon
+{
+    override void BeginPlay()
+    {
+        super.BeginPlay();
+
+        if (globalfreeze && WeaponFlags != 0)
+        {
+            G_PickDeathmatchStart();
+        }
+    }
+}
