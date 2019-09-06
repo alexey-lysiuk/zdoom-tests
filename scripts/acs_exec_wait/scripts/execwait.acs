@@ -1,0 +1,28 @@
+#library "execwait"
+
+#include "zcommon.acs"
+
+script 42 open
+{
+    Log(s:"Script 42");
+    ACS_Execute(43, 0, 0, 0, 0);
+    ACS_Execute(44, 0, 0, 0, 0);
+    ScriptWait(43);
+    ScriptWait(44);
+    ACS_Execute(45, 0, 0, 0, 0);
+}
+
+script 43 (void)
+{
+    Log(s:"Script 43");
+}
+
+script 44 (void)
+{
+    Log(s:"Script 44");
+}
+
+script 45 (void)
+{
+    Log(s:"Script 45");
+}
