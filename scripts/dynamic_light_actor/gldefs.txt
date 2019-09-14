@@ -1,0 +1,5 @@
+pointlight DynamicLightActor
+{
+	color 1.0 1.0 1.0
+	size 100
+}
