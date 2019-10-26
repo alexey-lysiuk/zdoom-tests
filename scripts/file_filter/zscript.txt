@@ -1,0 +1,20 @@
+class FileFilterTest : Actor
+{
+	override void BeginPlay()
+	{
+		int lumpIndex = -1;
+
+		while (true)
+		{
+			lumpIndex = Wads.FindLump("hello", lumpIndex + 1);
+			
+			if (lumpIndex == -1)
+			{
+				break;
+			}
+			
+			string hello = Wads.ReadLump(lumpIndex);
+			console.printf("%s", hello);
+		}
+	}
+}
