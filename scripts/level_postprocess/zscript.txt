@@ -1,0 +1,29 @@
+class LevelPostProcessorTest : LevelPostProcessor
+{
+	protected void Apply(Name checksum, String mapname)
+	{
+		console.printf("%s: things = %u, checksum = %s", mapname, GetThingCount(), checksum);
+
+		uint thing = 0;
+		console.printf("thing %u: [%i] pos = (%f %f %f)",
+			thing, GetThingEdNum(thing), GetThingPos(thing));
+		console.printf("> skills = 0x%x, angle = %i, flags = 0x%x, tid = %i", 
+			GetThingSkills(thing), GetThingAngle(thing), GetThingFlags(thing), GetThingID(thing));
+		console.printf("> special = %i (%i, %i, %i, %i, %i)", 
+			GetThingSpecial(thing), GetThingArgument(thing, 0), GetThingArgument(thing, 1), GetThingArgument(thing, 2), GetThingArgument(thing, 3), GetThingArgument(thing, 4));
+
+		if (checksum == '3C9902E376CCA1E9C3BE8763BDC21DF5') // doom2.wad map01
+		{
+			uint newthing = AddThing(1, (0, 0, 0), 180, 0, 0);
+			SetThingXY(newthing, -500, 700);
+			SetThingAngle(newthing, 45);
+			SetThingSkills(newthing, LevelPostProcessor.SKILLS_ALL);
+			SetThingFlags(newthing, LevelPostProcessor.MODES_ALL);
+
+			if (GetThingEdNum(68) == 2005) // Chainsaw
+			{
+				SetThingEdNum(68, 2006); // BFG9000
+			}
+		}
+	}
+}
