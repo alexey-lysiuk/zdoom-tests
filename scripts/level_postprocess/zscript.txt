@@ -23,6 +23,26 @@ class LevelPostProcessorTest : LevelPostProcessor
 			if (GetThingEdNum(68) == 2005) // Chainsaw
 			{
 				SetThingEdNum(68, 2006); // BFG9000
+				SetThingSpecial(68, 72); // ThrustThing
+				SetThingArgument(68, 0, 180);
+				SetThingArgument(68, 1, 100);
+				SetThingArgument(68, 2, 1);
+			}
+		}
+	}
+}
+
+class CoopLevelPostProcessor : LevelPostProcessor
+{
+	protected void Apply(Name checksum, String mapname)
+	{
+		for (uint i = 0, count = GetThingCount(); i < count; ++i)
+		{
+			uint thingFlags = GetThingFlags(i);
+
+			if (thingFlags & (~MTF_SINGLE | MTF_COOPERATIVE))
+			{
+				SetThingFlags(i, thingFlags | MTF_SINGLE);
 			}
 		}
 	}
