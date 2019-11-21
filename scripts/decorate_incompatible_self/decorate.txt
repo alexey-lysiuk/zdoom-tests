@@ -1,0 +1,9 @@
+actor DecoratePistol : ZScriptPistol
+{
+    States
+    {
+    Fire:
+        PISG A 1 { DoIt(); }
+        Goto super::Fire
+    }
+}

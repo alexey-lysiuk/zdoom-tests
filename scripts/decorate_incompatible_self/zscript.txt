@@ -1,0 +1,13 @@
+class ZScriptPistol : Pistol
+{
+    const COUNT = 16 * 1024;
+    double d[COUNT];
+
+    void DoIt()
+    {
+        for (int i = 0; i < COUNT; ++i)
+        {
+            d[i] = 0.1;
+        }
+    }
+}
