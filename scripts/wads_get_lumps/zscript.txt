@@ -1,0 +1,97 @@
+class ListAllLumps : Actor
+{
+    private string GetLumpNamespace(int lump)
+    {
+        switch (Wads.GetLumpNamespace(lump))
+        {
+            case Wads.ns_hidden: return "Hidden";
+            case Wads.ns_global: return "Global";
+            case Wads.ns_sprites: return "Sprites";
+            case Wads.ns_flats: return "Flats";
+            case Wads.ns_colormaps: return "Colormaps";
+            case Wads.ns_acslibrary: return "ACS Library";
+            case Wads.ns_newtextures: return "New Textures";
+            case Wads.ns_bloodraw: return "Blood RAW";
+            case Wads.ns_bloodsfx: return "Blood SFX";
+            case Wads.ns_bloodmisc: return "Blood Misc";
+            case Wads.ns_strifevoices: return "Strife Voices";
+            case Wads.ns_hires: return "High Res";
+            case Wads.ns_voxels: return "Voxels";
+            case Wads.ns_specialzipdirectory: return "ZIP Directory";
+            case Wads.ns_sounds: return "Sounds";
+            case Wads.ns_patches: return "Patches";
+            case Wads.ns_graphics: return "Graphics";
+            case Wads.ns_music: return "Music";
+            case Wads.ns_firstskin: return "First Skin";
+        }
+        return "Unknown";
+    }
+
+    override void BeginPlay()
+    {
+        for (int i = 0, count = Wads.GetNumLumps(); i < count; ++i)
+        {
+            console.printf("% 5i | %-8s | %-13s | %s", i, Wads.GetLumpName(i), GetLumpNamespace(i), Wads.GetLumpFullName(i));
+        }
+    }
+}
+
+class LumpBoundChecks : Actor
+{
+    override void BeginPlay()
+    {
+        int count = Wads.GetNumLumps();
+        string lumpname;
+        int lumpns;
+
+        // Wads.GetLumpName
+        lumpname = Wads.GetLumpName(-1);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpName(-1000000);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpName(count);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpName(count + 1);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpName(count + 1000000);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        // Wads.GetLumpFullName
+        lumpname = Wads.GetLumpFullName(-1);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpFullName(-1000000);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpFullName(count);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpFullName(count + 1);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        lumpname = Wads.GetLumpFullName(count + 1000000);
+        if (lumpname != "") ThrowAbortException("lumpname != \"\"");
+
+        // Wads.GetLumpNamespace
+        lumpns = Wads.GetLumpNamespace(-1);
+        if (lumpns != Wads.ns_global) ThrowAbortException("lumpns != Wads.ns_global");
+
+        lumpns = Wads.GetLumpNamespace(-1000000);
+        if (lumpns != Wads.ns_global) ThrowAbortException("lumpns != Wads.ns_global");
+
+        lumpns = Wads.GetLumpNamespace(count);
+        if (lumpns != Wads.ns_global) ThrowAbortException("lumpns != Wads.ns_global");
+
+        lumpns = Wads.GetLumpNamespace(count + 1);
+        if (lumpns != Wads.ns_global) ThrowAbortException("lumpns != Wads.ns_global");
+
+        lumpns = Wads.GetLumpNamespace(count + 1000000);
+        if (lumpns != Wads.ns_global) ThrowAbortException("lumpns != Wads.ns_global");
+
+        console.printf("All tests passed");
+    }
+}
