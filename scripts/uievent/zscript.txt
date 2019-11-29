@@ -2,12 +2,23 @@ version "2.4"
 
 class UIEventTestHandler : EventHandler
 {
+    override void OnRegister()
+    {
+        IsUiProcessor = true;
+    }
+
     override bool InputProcess(InputEvent e)
     {
-        if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_F1)
+        if (e.Type == InputEvent.Type_KeyDown)
         {
-            SendNetworkEvent("EnterUiProcess");
-            return true;
+            if (e.KeyScan == InputEvent.Key_F1)
+            {
+                SendNetworkEvent("EnterUiProcess");
+            }
+            else if (e.KeyScan == InputEvent.Key_F2)
+            {
+                SendNetworkEvent("ToggleRequireMouse");
+            }
         }
 
         return false;
@@ -19,6 +30,7 @@ class UIEventTestHandler : EventHandler
 
         switch (e.Type)
         {
+        case UiEvent.Type_MouseMove     : message = "Type_MouseMove"     ; break;
         case UiEvent.Type_LButtonDown   : message = "Type_LButtonDown"   ; break;
         case UiEvent.Type_LButtonUp     : message = "Type_LButtonUp"     ; break;
         case UiEvent.Type_MButtonDown   : message = "Type_MButtonDown"   ; break;
@@ -38,6 +50,10 @@ class UIEventTestHandler : EventHandler
             if (e.KeyChar == UiEvent.Key_F1)
             {
                 SendNetworkEvent("ExitUiProcess");
+            }
+            else if (e.KeyChar == UiEvent.Key_F2)
+            {
+                SendNetworkEvent("ToggleRequireMouse");
             }
             break;
         case UiEvent.Type_KeyUp:
@@ -69,6 +85,10 @@ class UIEventTestHandler : EventHandler
         {
             IsUiProcessor = true;
         }
+        else if (e.Name == "ToggleRequireMouse")
+        {
+            RequireMouse = !RequireMouse;
+        }
     }
 
     override void RenderOverlay(RenderEvent e)
@@ -77,7 +97,10 @@ class UIEventTestHandler : EventHandler
         string message = IsUiProcessor 
             ? "UI input mode - press F1 to enter normal mode"
             : "Normal input mode - press F1 to enter UI mode";
-
         Screen.drawText(ConFont, textColor, 50, 50, message);
+
+        textColor = RequireMouse ? Font.CR_GREEN : Font.CR_RED;
+        message = String.Format("RequireMouse is %s, press F2 to toggle", RequireMouse ? "ON" : "OFF");
+        Screen.drawText(ConFont, textColor, 50, 70, message);
     }
 }
