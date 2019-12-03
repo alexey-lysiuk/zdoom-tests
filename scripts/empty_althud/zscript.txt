@@ -1,0 +1,20 @@
+class EmptyAltHud : AltHud
+{
+    override void DrawInGame(PlayerInfo CPlayer)
+    {
+        DrawTime(SmallFont.GetHeight());
+    }
+
+    override void DrawAutomap(PlayerInfo CPlayer)
+    {
+    }
+
+    override bool DrawTime(int y)
+    {
+        string timeString = "this hud is empty...";
+        int characterCount = timeString.length();
+        int width  = SmallFont.GetCharWidth("0") * characterCount;
+        DrawHudText(SmallFont, hud_timecolor, timeString, hudwidth - width, y + 1, 1);
+        return true;
+    }
+}
