@@ -1,0 +1,30 @@
+class StringCVars : Actor
+{
+    int ImplicitServer()
+    {
+        return string_cvar_server.ToInt();
+    }
+
+    int ExplicitServer()
+    {
+        string temp = string_cvar_server;
+        return temp.ToInt();
+    }
+
+    string ImplicitUser()
+    {
+        return CVar.GetCVar('string_cvar_user', players[0]).GetString();
+    }
+
+    string ExplicitUser()
+    {
+        CVar temp = CVar.GetCVar('string_cvar_user', players[0]);
+        return temp.GetString();
+    }
+
+    override void BeginPlay()
+    {
+        console.printf("%i == %i", ImplicitServer(), ExplicitServer());
+        console.printf("%s == %s", ImplicitUser(), ExplicitUser());
+    }
+}

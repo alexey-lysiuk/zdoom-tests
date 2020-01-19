@@ -1,0 +1,2 @@
+server noarchive string string_cvar_server = "42";
+user noarchive string string_cvar_user = "abc";
