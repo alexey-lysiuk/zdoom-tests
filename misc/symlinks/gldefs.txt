@@ -1,1 +1,1 @@
-/Volumes/ramdisk/zdoom-tests/misc/glsl_noise/gldefs.txt
+../glsl_noise/gldefs.txt
