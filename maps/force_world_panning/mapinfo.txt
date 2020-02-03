@@ -1,0 +1,4 @@
+map map01 "force world panning"
+{
+	forceworldpanning
+}
