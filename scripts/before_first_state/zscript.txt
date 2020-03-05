@@ -1,0 +1,31 @@
+class LoopBeforeFirstState : Actor
+{
+	States
+	{
+		loop;
+	}
+}
+
+class FailBeforeFirstState : Actor
+{
+	States
+	{
+		fail;
+	}
+}
+
+class WaitBeforeFirstState : Actor
+{
+	States
+	{
+		wait;
+	}
+}
+
+class StopBeforeFirstState : Actor
+{
+	States
+	{
+		stop;
+	}
+}
