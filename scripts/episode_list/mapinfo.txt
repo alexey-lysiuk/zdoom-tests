@@ -1,0 +1,55 @@
+clearepisodes
+
+episode e1m1
+{
+	picname = "WILV00"
+	name = "$HUSTR_E1M1"
+}
+
+episode e1m2
+{
+	picname = "WILV01"
+	name = "$HUSTR_E1M2"
+}
+
+episode e1m3
+{
+	picname = "WILV02"
+	name = "$HUSTR_E1M3"
+}
+
+episode e1m4
+{
+	picname = "WILV03"
+	name = "$HUSTR_E1M4"
+}
+
+episode e1m5
+{
+	picname = "WILV04"
+	name = "$HUSTR_E1M5"
+}
+
+episode e1m6
+{
+	picname = "WILV05"
+	name = "$HUSTR_E1M6"
+}
+
+episode e1m7
+{
+	picname = "WILV06"
+	name = "$HUSTR_E1M7"
+}
+
+episode e1m8
+{
+	picname = "WILV07"
+	name = "$HUSTR_E1M8"
+}
+
+episode e1m9
+{
+	picname = "WILV08"
+	name = "$HUSTR_E1M9"
+}
