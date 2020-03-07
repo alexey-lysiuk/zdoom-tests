@@ -1,0 +1,54 @@
+actor FistDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Fist"
+	Player.StartItem "Fist"
+}
+
+actor PistolDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Pistol"
+	Player.StartItem "Pistol"
+	Player.StartItem "Clip", 50
+}
+
+actor ShotgunDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Shotgun"
+	Player.StartItem "Shotgun"
+	Player.StartItem "Shell", 8
+}
+
+actor SuperShotgunDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Super Shotgun"
+	Player.StartItem "SuperShotgun"
+	Player.StartItem "Shell", 8
+}
+
+actor ChaingunDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Chaingun"
+	Player.StartItem "Chaingun"
+	Player.StartItem "Clip", 50
+}
+
+actor RocketLauncherDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Rocket Launcher"
+	Player.StartItem "RocketLauncher"
+	Player.StartItem "RocketAmmo", 2
+}
+
+actor PlasmaRifleDoomPlayer : DoomPlayer
+{
+	Player.DisplayName "Plasma Rifle"
+	Player.StartItem "PlasmaRifle"
+	Player.StartItem "Cell", 40
+}
+
+actor BFG9000DoomPlayer : DoomPlayer
+{
+	Player.DisplayName "BFG 9000"
+	Player.StartItem "BFG9000"
+	Player.StartItem "Cell", 40
+}

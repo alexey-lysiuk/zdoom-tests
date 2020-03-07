@@ -1,0 +1,12 @@
+gameinfo
+{
+	playerclasses = 
+		"FistDoomPlayer",
+		"PistolDoomPlayer",
+		"ShotgunDoomPlayer",
+		"SuperShotgunDoomPlayer",
+		"ChaingunDoomPlayer",
+		"RocketLauncherDoomPlayer",
+		"PlasmaRifleDoomPlayer",
+		"BFG9000DoomPlayer"
+}
