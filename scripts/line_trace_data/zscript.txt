@@ -1,0 +1,23 @@
+class LineTraceDataTest1 : Actor
+{
+	FLineTraceData trace;
+
+	override void BeginPlay()
+	{
+		LineTrace(0, 0, 0, 0, 0, 0, 0, trace);
+	}
+}
+
+class LineTraceDataTest2 : Actor
+{
+	FLineTraceData trace;
+	int num;
+
+	override void BeginPlay()
+	{
+		int std = 1234567890;
+		num = std;
+		LineTrace(0, 0, 0, 0, 0, 0, 0, trace);
+		console.printf("expected: %i, actual: %i", std, num);
+	}
+}
