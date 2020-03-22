@@ -1,4 +1,9 @@
-map map01 "force world panning"
+map map01 "force world panning - texture lump names"
+{
+	forceworldpanning
+}
+
+map map02 "force world panning - texture paths"
 {
 	forceworldpanning
 }
