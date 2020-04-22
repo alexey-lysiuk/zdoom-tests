@@ -28,6 +28,12 @@ class LevelPostProcessorTest : LevelPostProcessor
 				SetThingArgument(68, 1, 100);
 				SetThingArgument(68, 2, 1);
 			}
+
+			// Make some imps friendly
+			for (uint i = 31; i < 34; ++i)
+			{
+				SetThingFlags(i, GetThingFlags(i) | MTF_FRIENDLY);
+			}
 		}
 	}
 }
