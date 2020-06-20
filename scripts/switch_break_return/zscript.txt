@@ -1,0 +1,21 @@
+class SwitchBreakReturn : Actor
+{
+	bool Func(int arg)
+	{
+		switch (arg)
+		{
+		case 0:
+		{
+			break;
+		}
+
+		default:
+			return true;
+		}
+	}
+
+	override void BeginPlay()
+	{
+		Func(0);
+	}
+}
