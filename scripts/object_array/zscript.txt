@@ -1,0 +1,121 @@
+
+class CheckActor : Actor
+{
+	override void Tick()
+	{
+		Console.Printf("tic %p", self);
+	}
+
+	override void OnDestroy()
+	{
+		Console.Printf("--- %p", self);
+		Super.OnDestroy();
+	}
+}
+
+class Item
+{
+	Actor value;
+}
+
+class AddItem : Actor
+{
+}
+
+class RemoveItem : Actor
+{
+}
+
+class Storage : Actor
+{
+	Array<Item> items;
+	ThinkerIterator addIterator;
+	ThinkerIterator removeIterator;
+
+	override void Tick()
+	{
+		if (addIterator == null)
+		{
+			addIterator = ThinkerIterator.Create("AddItem");
+		}
+		else
+		{
+			addIterator.Reinit();
+		}
+
+		while (true)
+		{
+			Thinker adder = addIterator.Next();
+			if (adder == null)
+			{
+				break;
+			}
+
+			Item i = new("Item");
+			i.value = Actor.Spawn("CheckActor");
+			Console.Printf("+++ %p", i.value);
+			items.Push(i);
+
+			adder.Destroy();
+		}
+
+		if (removeIterator == null)
+		{
+			removeIterator = ThinkerIterator.Create("RemoveItem");
+		}
+		else
+		{
+			removeIterator.Reinit();
+		}
+
+		while (items.Size() > 0)
+		{
+			Thinker remover = removeIterator.Next();
+			if (remover == null)
+			{
+				break;
+			}
+
+			// !!!
+			//Item i = items[0];
+			//i.value.Destroy();
+			//items.Delete(0);
+
+			for (uint i = 0, count = items.Size(); i < count; ++i)
+			{
+				if (items[i].value)
+				{
+					items[i].value.Destroy();
+					break;
+				}
+			}
+
+			remover.Destroy();
+		}
+
+		for (uint i = 0, count = items.Size(); i < count; ++i)
+		{
+			if (items[i].value)
+			{
+				items[i].value.Tick();
+			}
+		}
+
+		if ((gametic % TICRATE) == 0)
+		{
+			while (items.Size() > 0)
+			{
+				if (items[0].value)
+				{
+					break;
+				}
+				else
+				{
+					items.Delete(0);
+				}
+			}
+
+			items.ShrinkToFit();
+		}
+	}
+}
